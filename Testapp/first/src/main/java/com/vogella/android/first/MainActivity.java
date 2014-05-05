@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.lang.*;
 
 public class MainActivity extends Activity {
 
@@ -37,8 +38,16 @@ public class MainActivity extends Activity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Routing to: " + e.getText().toString(), Toast.LENGTH_LONG).show();
-                w.loadUrl(e.getText().toString());
+                String s = e.getText().toString();
+
+                Toast.makeText(MainActivity.this, "Routing to: " + s, Toast.LENGTH_LONG).show();
+
+                if(!(s.toLowerCase().contains("http://www.".toLowerCase())))
+                {
+                 s = "http://www." + s;
+                }
+
+                w.loadUrl(s);
 
             }
         });
